@@ -12,6 +12,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.shape.Polyline;
 import javafx.util.Duration;
 
@@ -23,6 +26,17 @@ public class Main extends Application {
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			
+//			Media m = new Media("C:\\Users\\Giovanni\\Downloads\\Jobs.avi");
+			Media m = new Media("http://www.archive.org/download/MickeyMouse-RunawayTrain/Film-42.mp4");
+			MediaPlayer player = new MediaPlayer(m);			
+			MediaView mview = new MediaView(player);
+			mview.autosize();
+			mview.setCache(true);
+			player.play();
+			player.seek(Duration.seconds(15));
+			root.getChildren().add(mview);
+			
 			final Button btn = new Button();
 			btn.setText("I'm exist");
 			btn.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -54,7 +68,7 @@ public class Main extends Application {
 					root.getChildren().add(polyline);
 				}
 			});
-			root.getChildren().add(btn);			
+//			root.getChildren().add(btn);			
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
